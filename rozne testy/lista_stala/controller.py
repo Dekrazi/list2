@@ -28,6 +28,9 @@ def list_search(nameList):
     else:
         print(name, " not on the list.\n")
 
+def secret_input():
+    print("Congratulations. This is a duck:  \_o- ")
+
 
 
 
