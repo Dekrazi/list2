@@ -1,0 +1,17 @@
+def main():
+
+    from colored import fg
+    from funkcja import function_add
+
+    print(f"{fg('red')}H{fg('#9A32CD')}e{fg('yellow')}l{fg('white')}l{fg('black')}o{fg('white')}")
+
+    x = int(input("Pierwsza liczba: "))
+    y = int(input("Druga liczba: "))
+
+
+    res1 = function_add(x, y)
+
+    print("Result:", res1)    
+
+if __name__ == "__main__":
+    main()
