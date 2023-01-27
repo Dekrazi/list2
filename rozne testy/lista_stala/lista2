@@ -1,6 +1,6 @@
 def main():
 
-        from controller import list_print, list_add, list_del, list_search
+        from controller import list_print, list_add, list_del, list_search, secret_input
 
         names = ["Anna", "Radek", "Michal", "Bunia", "Artur", "Adam", "Stefa"]
 
@@ -31,7 +31,8 @@ def main():
                 if option == 5:
                         print("Exiting program...")  
                         break      
-
+                if option == 9:
+                        secret_input()                        
 
 
 
