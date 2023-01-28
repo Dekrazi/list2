@@ -13,20 +13,25 @@ def main():
                 
         }
 
-
+        
+        
 
         while True:
                 
                 print("*** MENU ***\n\n", names_menu)
                 print()
+                        
                 option = int(input('Enter your choice: ')) 
                 if option == 1:
                         list_print(names)
                 if option == 2:
-                        list_add(names)
+                        name = input()
+                        list_add(names, name)
                 if option == 3:
-                        list_del(names)
+                        name = input()
+                        list_del(names, name)
                 if option == 4:
+                        name = input()
                         list_search(names)
                 if option == 5:
                         print("Exiting program...")  
