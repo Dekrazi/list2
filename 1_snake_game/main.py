@@ -2,17 +2,33 @@ import pygame
 from pygame.locals import *
 import time
 
+SIZE = 40
+
+
+class Apple:
+    def __init__ (self, parent_screen):
+        self.apple = pygame.image.load("1_snake_game/resources/apple.jpg").convert()
+        self.parent_screen = parent_screen
+        self.x = SIZE*3
+        self.y = SIZE*3
+        
+    def draw(self):
+        self.parent_screen.blit(self.apple, (self.x, self.y))
+        pygame.display.flip()
+
 class Snake:
-    def __init__(self, parent_screen, lenght)):
+    def __init__(self, parent_screen, lenght):
+        self.lenght = lenght
         self.parent_screen = parent_screen
         self.block = pygame.image.load("1_snake_game/resources/block.jpg").convert()
-        self.x = 100
-        self.y = 100
+        self.x = [SIZE]*lenght
+        self.y = [SIZE]*lenght
         self.direction = 'down'
 
     def draw(self):
         self.parent_screen.fill((110, 110, 5))
-        self.parent_screen.blit(self.block, (self.x, self.y))
+        for i in range(self.lenght):
+            self.parent_screen.blit(self.block, (self.x[i], self.y[i]))
         pygame.display.flip()
 
     def move_left(self):
@@ -25,26 +41,37 @@ class Snake:
         self.direction = 'down'
 
     def walk(self):
+
+        for i in range(self.lenght-1,0,-1):
+            self.x[i] = self.x[i - 1]
+            self.y[i] = self.y[i - 1]
+
         if self.direction == 'left':
-            self.x -= 10
+            self.x[0] -= SIZE
         if self.direction == 'right':
-            self.x += 10
+            self.x[0] += SIZE
         if self.direction == 'up':
-            self.y -= 10
+            self.y[0] -= SIZE
         if self.direction == 'down':
-            self.y += 10
+            self.y[0] += SIZE
 
         self.draw()
 
 class Game:
     def __init__(self):
         pygame.init()
-        self.surface = pygame.display.set_mode((1000, 500))
+        self.surface = pygame.display.set_mode((1000, 800))
         self.surface.fill((110, 110, 5))
-        self.snake = Snake(self.surface)    
+        self.snake = Snake(self.surface, 3)    
         self.snake.draw()
+        self.apple = Apple(self.surface)
+        self.apple.draw()
 
-
+    def play(self):
+        self.snake.walk()
+        self.snake.draw()
+        
+        
     def run(self):
         running = True
 
@@ -72,8 +99,10 @@ class Game:
                 elif event.type == QUIT:
                     running = False
 
-            self.snake.walk()
-            time.sleep(0.2)
+            
+            self.play()
+            
+            time.sleep(0.3)
 
 
 
@@ -91,4 +120,3 @@ if __name__ == "__main__":
     
 
 
-yt_vid = ("37:11")
