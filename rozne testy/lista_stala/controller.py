@@ -6,15 +6,13 @@ def list_print(nameList):
         print(name)
     
 
-def list_add(nameList):
-    name = input()
+def list_add(nameList, name):
     if name not in nameList:
         nameList.append(name)
         print(name + " added to the list.\n")
         
 
-def list_del(nameList):
-    name = input()
+def list_del(nameList, name):
     if name in nameList:
         nameList.remove(name)
         print(name + " removed from list.\n")
